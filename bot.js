@@ -111,3 +111,23 @@ client.on('message', message => {//By Codes , ' ّEpicEdiTeDّ#4968
     });
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+client.login(process.env.BOT_TOKEN);
