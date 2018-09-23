@@ -111,7 +111,7 @@ if (message.content.startsWith(prefix + 'help')) {
     let pages = [`
 ***__وصف عن البوت__***
 **
- ا:rocket: البوت يعمل 24 ساعه
+:rocket: __البوت يعمل 24 ساعه__
 __بوت برودكاست اسطوري__
 **
         ***__General orders__***
@@ -175,7 +175,7 @@ if (message.content.startsWith("+content")) {
             let args = message.content.split(" ").slice(1).join(" ");
 
                 var xsatt = new Discord.RichEmbed()
-                .addField('** الـسيرفر**', `${message.guild.name}`,true)
+                .addField('**الـسيرفر**', `${message.guild.name}`,true)
             .addField(' **الـمرسل **', `${message.author.username}#${message.author.discriminator}`,true)
             .addField(' **الرسالة** ', args)
               .setThumbnail(message.guild.iconURL)
