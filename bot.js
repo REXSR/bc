@@ -36,7 +36,7 @@ client.on('message', message => {
 
 if (message.content === '+invite') {
 
-      message.author.send(' رابط البوت |  https://discordapp.com/api/oauth2/authorize?client_id=490091768860377088&permissions=2146958583&scope=bot p').catch(e => console.log(e.stack));
+      message.author.send('https://discordapp.com/api/oauth2/authorize?client_id=490091768860377088&permissions=2146958583&scope=bot').catch(e => console.log(e.stack));
 
     }
 
@@ -54,7 +54,7 @@ if (message.content === '+invite') {
 
 if (message.content === '+support') {
 
-      message.author.send(' https://discord.gg/D6FHAtU|  رابط السيرفر ').catch(e => console.log(e.stack));
+      message.author.send('https://discord.gg/D6FHAtU').catch(e => console.log(e.stack));
 
     }
 
@@ -66,7 +66,7 @@ if (message.content === '+support') {
     
 client.on('message', message => {
   if(!message.channel.guild) return;
-if(message.content.startsWith('bc')) {
+if(message.content.startsWith('+bc')) {
 if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
 if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('خطأ يرجى امتلاك الصلاحيات التالية : `ADMINISTRATOR`' );
 let args = message.content.split(" ").join(" ").slice(2 + prefix.length);
