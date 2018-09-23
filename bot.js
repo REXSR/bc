@@ -87,10 +87,10 @@ message.guild.members.forEach(m => {
 var bc = new
 Discord.RichEmbed()
 .setColor('RANDOM')
-.setTitle('Broadcast :mega: ')
-.addField('السيرفر  ', message.guild.name)
-.addField('المرسل   ', message.author.username)
-.addField('الرسالة  ', args)
+.setTitle('Broadcast')
+.addField('السيرفر ', message.guild.name)
+.addField('المرسل ', message.author.username)
+.addField('الرسالة', args)
 .setThumbnail(message.author.avatarURL)
 .setFooter(copy, client.user.avatarURL);
 m.send({ embed: bc })
@@ -106,10 +106,92 @@ msg.delete();
 });
  
  
-        
+   client.on('message', message => {
+if (message.content.startsWith(prefix + 'help')) { 
+    let pages = [`
+***__وصف عن البوت__***
+**
+ ا:rocket: البوت يعمل 24 ساعه
+__بوت برودكاست اسطوري__
+**
+        ***__General orders__***
+**
+『+invite | __لي اضافة البوت__』
+『+support | __لي طلب سيرفر السبورت__』
+『+bc | __لي ارسال برودكاست__』
+『+content | ارسالة رسالة لي صاحب البوت』
+**
+   
+`]
+    let page = 1;
+ 
+    let embed = new Discord.RichEmbed()
+    .setColor('RANDOM')
+    .setFooter(`Page ${page} of ${pages.length}`)
+    .setDescription(pages[page-1])
+ 
+    message.author.sendEmbed(embed).then(msg => {
+ 
+        msg.react('◀').then( r => {
+            msg.react('▶')
+ 
+ 
+        const backwardsFilter = (reaction, user) => reaction.emoji.name === '◀' && user.id === message.author.id;
+        const forwardsFilter = (reaction, user) => reaction.emoji.name === '▶' && user.id === message.author.id;
+ 
+ 
+        const backwards = msg.createReactionCollector(backwardsFilter, { time: 2000000});
+        const forwards = msg.createReactionCollector(forwardsFilter, { time: 2000000});
+ 
+ 
+ 
+        backwards.on('collect', r => {
+            if (page === 1) return;
+            page--;
+            embed.setDescription(pages[page-1]);
+            embed.setFooter(`Page ${page} of ${pages.length}`);
+            msg.edit(embed)
+        })
+        forwards.on('collect', r => {
+            if (page === pages.length) return;
+     
+      page++;
+            embed.setDescription(pages[page-1]);
+            embed.setFooter(`Page ${page} of ${pages.length}`);
+            msg.edit(embed)
+        })
+        })
+    })
+    }
+});
 
 
+client.on('message' , message => {
+  
+if (message.content.startsWith("+content")) {
+          if(!message.channel.guild) return message.reply('هذا الامر للسيرفرات فقط')
+      if (message.author.bot) return;
+            if (!message.channel.guild) return;
+            let args = message.content.split(" ").slice(1).join(" ");
 
+                var xsatt = new Discord.RichEmbed()
+                .addField('** الـسيرفر**', `${message.guild.name}`,true)
+            .addField(' **الـمرسل **', `${message.author.username}#${message.author.discriminator}`,true)
+            .addField(' **الرسالة** ', args)
+              .setThumbnail(message.guild.iconURL)
+              .setColor('RANDOM')
+              client.users.get("283355378811666435").send({embed: xsatt});
+
+            let embed = new Discord.RichEmbed()
+               .setAuthor(message.author.username, message.author.avatarURL)
+               .setColor("RANDOM")
+               .setDescription(' ✅ | **__ تم ارسال الرسالة الى صاحب البوت __**')
+               .setThumbnail(message.author.avatarURL)
+
+
+          message.channel.send(embed);
+        }});
+ 
 
 
 
