@@ -26,7 +26,7 @@ client.on('ready', () => {
   console.log('')
   console.log('')
 });
-
+    
 
 
 
@@ -196,7 +196,7 @@ if (message.content.startsWith("+content")) {
   
   client.on('ready', function(){
     var ms = 1000 ;
-    var setGame = [`+h`,`+he`,`+hel`,`+help`,`i`,`in`,`inv`,`invi`,`invit`,`invite`];
+    var setGame = [`+h`,`+he`,`+hel`,`+help`,`+i`,`+in`,`+inv`,`+invi`,`+invit`,`+invite`];
     var i = -1;
     var j = 0;
     setInterval(function (){
